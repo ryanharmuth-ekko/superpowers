@@ -117,6 +117,12 @@ Implementer subagents report one of four statuses. Handle each appropriately:
 
 **Never** ignore an escalation or force the same model to retry without changes. If the implementer said it's stuck, something needs to change.
 
+## Decision Logging
+
+After each task's review cycle, log non-trivial decisions to a `## Decisions` section at the **top** of the plan doc (after the title, before everything else). Reverse chronological — newest first. One line per entry: task tag, what was decided, brief why.
+
+Log: deviations from plan, ambiguity resolution, tradeoffs, review findings that caused changes, DONE_WITH_CONCERNS content, controller's own judgment calls. Don't log routine/mechanical work.
+
 ## Prompt Templates
 
 - `./implementer-prompt.md` - Dispatch implementer subagent

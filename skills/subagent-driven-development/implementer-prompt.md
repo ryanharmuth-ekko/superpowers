@@ -106,6 +106,10 @@ Task tool (general-purpose):
     - Files changed
     - Self-review findings (if any)
     - Any issues or concerns
+    - **Decisions:** List any non-trivial decisions you made — deviations from the task
+      spec, ambiguity you resolved, library/pattern choices, tradeoffs, or anything where
+      you picked one valid approach over another. One line each: what you decided, brief why.
+      If you made no non-trivial decisions, say "None."
 
     Use DONE_WITH_CONCERNS if you completed the work but have doubts about correctness.
     Use BLOCKED if you cannot complete the task. Use NEEDS_CONTEXT if you need

@@ -27,7 +27,8 @@ For each task:
 1. Mark as in_progress
 2. Follow each step exactly (plan has bite-sized steps)
 3. Run verifications as specified
-4. Mark as completed
+4. Log any non-trivial decisions to the plan doc (see Decision Logging below)
+5. Mark as completed
 
 ### Step 3: Complete Development
 
@@ -53,6 +54,12 @@ After all tasks complete and verified:
 - Fundamental approach needs rethinking
 
 **Don't force through blockers** - stop and ask.
+
+## Decision Logging
+
+After completing each task, log non-trivial decisions to a `## Decisions` section at the **top** of the plan doc (after the title, before everything else). Reverse chronological — newest first. One line per entry: task tag, what was decided, brief why.
+
+Log: deviations from plan, ambiguity resolution, tradeoffs, discoveries that changed the approach. Don't log routine/mechanical work.
 
 ## Remember
 - Review plan critically first
