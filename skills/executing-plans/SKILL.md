@@ -57,27 +57,9 @@ After all tasks complete and verified:
 
 ## Decision Logging
 
-After completing each task, log any non-trivial decisions to a `## Decisions` section at the **top** of the plan doc (right after the title, before everything else). This ensures the human can open the plan and immediately see what changed.
+After completing each task, log non-trivial decisions to a `## Decisions` section at the **top** of the plan doc (after the title, before everything else). Reverse chronological — newest first. One line per entry: task tag, what was decided, brief why.
 
-**Log when you:**
-- Deviate from the plan — "Plan said X, did Y because Z"
-- Resolve ambiguity — "Spec didn't cover this, chose to..."
-- Make a tradeoff — "Could have done A or B, went with A because..."
-- Discover something that changes the approach — "Found existing code handles X, so..."
-- Skip or defer something — "Deferred X because Y"
-
-**Don't log:** Routine implementation, things that exactly follow the plan, formatting/naming choices.
-
-**Format:** Reverse chronological (newest first). Each entry is one line: task tag, what was decided, brief why.
-
-```markdown
-## Decisions
-
-- **Task 3:** Used polling instead of webhooks — target API doesn't support webhooks
-- **Task 2:** Added migration step not in plan — existing data had nulls that would break new constraint
-```
-
-If the section doesn't exist yet, create it after the first heading. Insert new entries at the top. This is not a gate — continue working. It's a log.
+Log: deviations from plan, ambiguity resolution, tradeoffs, discoveries that changed the approach. Don't log routine/mechanical work.
 
 ## Remember
 - Review plan critically first
