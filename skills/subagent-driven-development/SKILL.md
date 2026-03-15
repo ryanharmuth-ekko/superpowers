@@ -117,6 +117,36 @@ Implementer subagents report one of four statuses. Handle each appropriately:
 
 **Never** ignore an escalation or force the same model to retry without changes. If the implementer said it's stuck, something needs to change.
 
+## Decision Logging
+
+After each task's full review cycle (implementer + spec review + quality review), the controller logs non-trivial decisions to a `## Decisions` section at the **top** of the plan doc (right after the title, before everything else). This ensures the human can open the plan and immediately see what changed without reading the full conversation.
+
+**What to log:**
+- Implementer's reported decisions (from their status report)
+- DONE_WITH_CONCERNS content
+- Spec reviewer findings that led to changes (e.g., "removed extra feature", "added missing requirement")
+- Quality reviewer findings that led to changes
+- Controller's own decisions (answering implementer questions, resolving ambiguity, model selection for non-obvious cases)
+
+**What NOT to log:**
+- Routine implementation (variable names, formatting)
+- Things that exactly follow the plan
+- Mechanical review fixes (typos, missing constants)
+
+**Format:** Reverse chronological (newest first). Each entry is one line: task tag, what was decided, brief why.
+
+```markdown
+## Decisions
+
+- **Task 3:** Used polling instead of webhooks — target API doesn't support webhooks
+- **Task 2:** Spec reviewer flagged missing progress reporting, implementer added it — was in spec but initially missed
+- **Task 1:** Installed hooks at user level — implementer asked, matches project conventions
+```
+
+If the `## Decisions` section doesn't exist in the plan doc yet, create it after the first heading. Insert new entries at the top of the section (not the bottom) so the most recent decisions are always first.
+
+**When to write:** After marking each task complete and before moving to the next task. This is not a gate — the agent continues working. It's a log.
+
 ## Prompt Templates
 
 - `./implementer-prompt.md` - Dispatch implementer subagent
