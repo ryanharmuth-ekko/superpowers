@@ -17,9 +17,11 @@ Load plan, review critically, execute all tasks, report when complete.
 
 ### Step 1: Load and Review Plan
 1. Read plan file
+   - If the plan file ends in `.baseline.md` or `.analytics.md`, stop and ask the user for the correct plan file path. These are generated artifacts, not plans.
 2. Review critically - identify any questions or concerns about the plan
 3. If concerns: Raise them with your human partner before starting
 4. If no concerns: Create TodoWrite and proceed
+5. Copy the plan file to `<plan-name>.baseline.md` in the same directory (e.g., `feature-plan.md` → `feature-plan.baseline.md`). This frozen snapshot is used for analytics at the end. If a baseline already exists, overwrite it.
 
 ### Step 2: Execute Tasks
 
@@ -30,7 +32,13 @@ For each task:
 4. Log any non-trivial decisions to the plan doc (see Decision Logging below)
 5. Mark as completed
 
-### Step 3: Complete Development
+### Step 3: Generate Analytics
+
+After all tasks are complete:
+1. Invoke `superpowers:pipeline-analytics` with the plan file path
+2. If analytics generation fails or warns, note it and proceed — do not block completion
+
+### Step 4: Complete Development
 
 After all tasks complete and verified:
 - Announce: "I'm using the finishing-a-development-branch skill to complete this work."
@@ -75,3 +83,4 @@ Log: deviations from plan, ambiguity resolution, tradeoffs, discoveries that cha
 - **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
 - **superpowers:writing-plans** - Creates the plan this skill executes
 - **superpowers:finishing-a-development-branch** - Complete development after all tasks
+- **superpowers:pipeline-analytics** - Generate analytics after execution completes

@@ -80,9 +80,17 @@ digraph process {
     "Mark task complete in TodoWrite" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Dispatch final code reviewer subagent for entire implementation" [label="no"];
-    "Dispatch final code reviewer subagent for entire implementation" -> "Use superpowers:finishing-a-development-branch";
+    "Invoke superpowers:pipeline-analytics" [shape=box];
+    "Dispatch final code reviewer subagent for entire implementation" -> "Invoke superpowers:pipeline-analytics";
+    "Invoke superpowers:pipeline-analytics" -> "Use superpowers:finishing-a-development-branch";
 }
 ```
+
+## Baseline Creation
+
+Immediately after reading the plan and extracting tasks (before dispatching the first implementer):
+1. If the plan file ends in `.baseline.md` or `.analytics.md`, stop and ask the user for the correct plan file path. These are generated artifacts, not plans.
+2. Copy the plan file to `<plan-name>.baseline.md` in the same directory (e.g., `feature-plan.md` → `feature-plan.baseline.md`). This frozen snapshot is used for analytics at the end. If a baseline already exists, overwrite it.
 
 ## Model Selection
 
@@ -122,6 +130,12 @@ Implementer subagents report one of four statuses. Handle each appropriately:
 After each task's review cycle, log non-trivial decisions to a `## Decisions` section at the **top** of the plan doc (after the title, before everything else). Reverse chronological — newest first. One line per entry: task tag, what was decided, brief why.
 
 Log: deviations from plan, ambiguity resolution, tradeoffs, review findings that caused changes, DONE_WITH_CONCERNS content, controller's own judgment calls. Don't log routine/mechanical work.
+
+## Generate Analytics
+
+After the final whole-implementation code review subagent completes, before finishing-a-development-branch:
+1. Invoke `superpowers:pipeline-analytics` with the plan file path
+2. If analytics generation fails or warns, note it and proceed — do not block completion
 
 ## Prompt Templates
 
@@ -275,6 +289,7 @@ Done!
 - **superpowers:writing-plans** - Creates the plan this skill executes
 - **superpowers:requesting-code-review** - Code review template for reviewer subagents
 - **superpowers:finishing-a-development-branch** - Complete development after all tasks
+- **superpowers:pipeline-analytics** - Generate analytics after execution completes
 
 **Subagents should use:**
 - **superpowers:test-driven-development** - Subagents follow TDD for each task
