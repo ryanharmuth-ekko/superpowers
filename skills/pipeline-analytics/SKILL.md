@@ -56,7 +56,7 @@ Write `<plan-name>.analytics.md` in the same directory as the plan. If the file 
 
 Use this format:
 
-```markdown
+````markdown
 # Pipeline Analytics
 
 **Plan:** <plan-filename>.md
@@ -77,7 +77,7 @@ Use this format:
 ```diff
 <raw unified diff output — if exceeding 200 lines, truncate and append "... (diff truncated, N total lines)">
 ```
-```
+````
 
 ### Step 5: Confirm
 
