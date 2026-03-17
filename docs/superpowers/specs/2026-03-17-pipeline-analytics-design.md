@@ -112,6 +112,8 @@ Analytics generation failures (malformed plan, unexpected format, etc.) must be 
 
 These are explicitly out of scope for v1 but could build on this foundation:
 
+- **Review phase attribution:** Track which decisions originated from spec compliance review vs code quality review vs implementer self-review. Currently decisions are logged without source attribution — this would require the controller to tag decision sources during execution.
+- **Brainstorming spec review analytics:** Capture the impact of the spec document review loop (during brainstorming) — how many iterations, what changed between rounds. This runs upstream of the execution pipeline and would need its own baseline/analytics mechanism.
 - **Controller-accumulated data:** Have the controller track review loop counts, implementer statuses, and model usage during execution, then pass structured data to the analytics skill
 - **Cross-run analytics:** Aggregate analytics across multiple executions to identify trends
 - **Analytics dashboard:** Visual representation of pipeline metrics over time
