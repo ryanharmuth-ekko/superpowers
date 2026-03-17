@@ -1,5 +1,10 @@
 # Pipeline Analytics Implementation Plan
 
+## Decisions
+
+- [Task 1] Used four-backtick outer fence to fix nested markdown code fence rendering in analytics template — quality review caught that triple-backtick nesting breaks markdown parsers
+- [Task 3] Swapped guard and copy order in Baseline Creation section — quality review caught that the guard must come before the copy operation to prevent operating on .baseline.md files
+
 > **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Add pipeline analytics to the superpowers execution skills — freeze a baseline copy of the plan before execution, generate an analytics report after execution.
