@@ -13,18 +13,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
-<HARD-GATE>
-Before writing any files, verify you are NOT on main/master:
-
-```bash
-branch=$(git branch --show-current)
-if [ "$branch" = "main" ] || [ "$branch" = "master" ]; then
-  echo "ERROR: On $branch — invoke superpowers:using-git-worktrees first"
-fi
-```
-
-If on main/master: STOP and invoke `superpowers:using-git-worktrees` to create a feature branch. Do NOT proceed until you are on a feature branch. Plans and specs must never be committed directly to main.
-</HARD-GATE>
+**Context:** This should be run in a dedicated worktree (created by brainstorming skill).
 
 **Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
 - (User preferences for plan location override this default)
