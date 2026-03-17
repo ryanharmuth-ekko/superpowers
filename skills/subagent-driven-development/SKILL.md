@@ -89,8 +89,8 @@ digraph process {
 ## Baseline Creation
 
 Immediately after reading the plan and extracting tasks (before dispatching the first implementer):
-1. Copy the plan file to `<plan-name>.baseline.md` in the same directory (e.g., `feature-plan.md` → `feature-plan.baseline.md`). This frozen snapshot is used for analytics at the end. If a baseline already exists, overwrite it.
-2. If the plan file ends in `.baseline.md` or `.analytics.md`, stop and ask the user for the correct plan file path. These are generated artifacts, not plans.
+1. If the plan file ends in `.baseline.md` or `.analytics.md`, stop and ask the user for the correct plan file path. These are generated artifacts, not plans.
+2. Copy the plan file to `<plan-name>.baseline.md` in the same directory (e.g., `feature-plan.md` → `feature-plan.baseline.md`). This frozen snapshot is used for analytics at the end. If a baseline already exists, overwrite it.
 
 ## Model Selection
 
