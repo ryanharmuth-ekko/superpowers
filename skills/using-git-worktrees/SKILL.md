@@ -13,6 +13,22 @@ Git worktrees create isolated workspaces sharing the same repository, allowing w
 
 **Announce at start:** "I'm using the using-git-worktrees skill to set up an isolated workspace."
 
+## Early Exit: Already In a Worktree
+
+Before creating anything, check if you're already inside a worktree:
+
+```bash
+git_dir=$(git rev-parse --git-dir)
+```
+
+**If `$git_dir` contains `/worktrees/`:** You're already in a worktree — skip creation. Announce:
+
+> "Already in a worktree on branch `$(git branch --show-current)` — skipping worktree creation."
+
+This happens when brainstorming already created the worktree earlier in the session and a downstream skill (executing-plans, subagent-driven-development) invokes this skill again.
+
+**Otherwise:** Proceed with worktree creation below.
+
 ## Directory Selection Process
 
 Follow this priority order:
@@ -145,6 +161,7 @@ Ready to implement <feature-name>
 
 | Situation | Action |
 |-----------|--------|
+| Already in a worktree | Skip creation (early exit) |
 | `.worktrees/` exists | Use it (verify ignored) |
 | `worktrees/` exists | Use it (verify ignored) |
 | Both exist | Use `.worktrees/` |
